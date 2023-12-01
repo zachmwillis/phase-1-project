@@ -32,12 +32,12 @@ body {
 }
 
 #surpriseButton {
-    background-color: #4caf50;
+    background-color: #3498db;
     color: #fff;
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 10px;
     align-self: center;
@@ -46,6 +46,8 @@ body {
 #commentBox {
     margin-bottom: 50px;
     padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 #formOne {
@@ -89,6 +91,15 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 10px;
+}
+
+#submitText {
+    background-color: #3498db;
+    color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 #surpriseButton,
