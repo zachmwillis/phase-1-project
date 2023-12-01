@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dayImprover = document.getElementById('dayImprover');
     const dogPic = document.createElement('img');
 
+
     // Function that grabs the photos from the API
     async function getRandomPic() {
         // Tries to get photo from API
@@ -18,14 +19,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
     // Function that loads new dog pic whenever the button is pressed again
     async function newDogPic() {
         const imageLink = await getRandomPic();
         dogPic.src = imageLink;
     }
 
+
     // Event listener for when the button is pressed, the new dog photo will appear
     surpriseButton.addEventListener('click', newDogPic);
+
 
     // Appends to the div
     dayImprover.appendChild(dogPic);
@@ -45,12 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const formOne = document.getElementById('formOne');
     const textBox = document.getElementById('text');
     
+
     // Event listener so that the comment goes away when the submit button is pressed
     formOne.addEventListener('submit', function (event) {
         event.preventDefault();
 
+
         // Declaring variable for text box. Value property added so it holds the current text
         const commentText = textBox.value;
+
 
         // If statement that takes comment and can put it in an array and clears the comment box after submitted
         if (commentText !== '') {
@@ -76,38 +83,38 @@ document.addEventListener('DOMContentLoaded', function () {
     let storeID = 1;
     let upperPrice = 25;
 
+
     // Function that gets data from storeID and upperPrices
     function refreshTable() {
-        fetchCheapSharkData(storeID, upperPrice)
+        fetchCheapSharkData(storeID)
             // Once promise is returned, it will fill the table with data
             .then(info => {
                 inputDataInTable(info);
             });
     }
 
+
     // Function that fills the table with data and affects the HTML
     function inputDataInTable(data) {
         dataTable.innerHTML = '';
 
-    
         // Iterates through the data and arranges it into the table
         data.forEach(deal => {
             // Declaring variables that add rows
             const row = dataTable.insertRow();
-            const [description, lowerPrice, upperPrice] = deal.split(', ');
+            const [description, lowerPrice] = deal.split(', ');
             // Declaring variables that add cells
             const descRow = row.insertCell(0);
             const lowerPriceRow = row.insertCell(1);
-            const upperPriceRow = row.insertCell(2);
             // Replaces cells with new data once needed
             descRow.textContent = description.replace('Description: ', '');
             lowerPriceRow.textContent = lowerPrice.replace('Lower Price: ', '');
-            upperPriceRow.textContent = upperPrice.replace('Upper Price: ', '');
         });
     }
 
+
     // Function that fetches data from the API using the two parameters and returns the array of strings into the table
-    function fetchCheapSharkData(storeID, upperPrice) {
+    function fetchCheapSharkData(storeID) {
         // Declares variable with the value being the API address
         const apiUrl = `https://www.cheapshark.com/api/1.0/deals?storeID=${storeID}&upperPrice=${upperPrice}`;
         // Returns the API address and 
@@ -122,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Uses .map() to form all of the data into a string and returns all of the data as an array
             .then(dealsData => {
                 return dealsData.map(deal => {
-                    return `Description: ${deal.title}, Lower Price: ${deal.salePrice}, Upper Price: ${upperPrice}`;
+                    return `Description: ${deal.title}, Lower Price: ${deal.salePrice}`;
                 });
             })
             // If any errors occur, it will display an error message
@@ -130,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error fetching deals information:', error.message);
             });
     }
+
 
     // Event listener so that when you press the left or right key, it filters through the table
     document.addEventListener('keydown', function (event) {
@@ -144,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Calls the function and refreshes the table when the arrows are pressed
         refreshTable();
     });
+
 
     // Starting spot
     refreshTable();
