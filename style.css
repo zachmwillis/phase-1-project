@@ -37,6 +37,12 @@ body {
     border-radius: 4px;
 }
 
+#dogImageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
 #dayImprover button {
     background-color: #4caf50;
     color: #fff;
