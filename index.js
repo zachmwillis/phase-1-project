@@ -1,4 +1,4 @@
-// Function that displays a random photo from the API whenever the button is clicked
+// Displays a random photo from the API whenever the button is clicked
 document.addEventListener('DOMContentLoaded', function () {
     //Declaring variabels for the button, div, and pictures
     const surpriseButton = document.getElementById('surpriseButton');
