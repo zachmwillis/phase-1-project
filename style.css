@@ -43,6 +43,13 @@ body {
     margin-top: 20px;
 }
 
+.picBorderClass {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    overflow: hidden;
+}
+
 #dayImprover button {
     background-color: #4caf50;
     color: #fff;
