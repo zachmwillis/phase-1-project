@@ -44,8 +44,9 @@ body {
 #dogImageContainer {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    justify-content: flex-start;
 }
+
 
 .picBorderClass {
     width: 200px;
