@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dogPic = document.createElement('img');
 
 
+
     // Function that grabs the photos from the API
     async function getRandomPic() {
         // Tries to get photo from API
