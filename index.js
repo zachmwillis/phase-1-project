@@ -148,3 +148,69 @@ document.addEventListener('DOMContentLoaded', function () {
     // Starting spot
     refreshTable();
 });
+
+
+
+
+
+
+
+
+
+
+// Function that gets the data from the API and makes it into a table
+async function getPlayers() {
+    const bballApi = "https://www.balldontlie.io/api/v1/players";
+    // Declaring variables according to each parameter
+    const ballParam = {
+      page: 1,
+      per_page: 50,
+      search: 'Jalen'
+    };
+    // Telling what parameters to get from the API
+    const apiUrl = new URL(bballApi);
+    apiUrl.search = new URLSearchParams(ballParam).toString();
+
+    // Gets the data from the API, dynamicall changes the HTML, and puts it all in the table
+    try {
+      // Get request from the API
+      const response = await fetch(apiUrl);
+      // If statement that tells you if its ok
+      if (response.ok) {
+        // Goes through the JSON response
+        const data = await response.json();
+        // Gets the data
+        const players = data.data || [];
+        // Makes a table
+        const table = document.createElement('table');
+        table.border = '2';
+        // Makes table headers
+        const headers = table.createTHead();
+        const headerRow = headers.insertRow(0);
+        headerRow.insertCell(0).textContent = 'ID';
+        headerRow.insertCell(1).textContent = 'First Name';
+        headerRow.insertCell(2).textContent = 'Last Name';
+        // Looks for guys named Jalen and puts all of the info in the table
+        players.forEach(player => {
+          if (
+            player.first_name.toLowerCase().includes('jalen') ||
+            player.last_name.toLowerCase().includes('jalen')
+          ) {
+            const row = table.insertRow();
+            row.insertCell(0).textContent = player.id;
+            row.insertCell(1).textContent = player.first_name;
+            row.insertCell(2).textContent = player.last_name;
+          }
+        });
+        // Appends the table to the body
+        document.body.appendChild(table);
+      } else {
+        console.error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  }
+
+  // Calls the function and shows the data
+  getPlayers();
