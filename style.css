@@ -27,6 +27,16 @@ body {
     text-align: center;
 }
 
+#surpriseButton {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
 #dayImprover button {
     background-color: #4caf50;
     color: #fff;
